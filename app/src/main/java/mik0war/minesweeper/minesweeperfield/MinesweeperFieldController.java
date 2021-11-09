@@ -1,10 +1,8 @@
 package mik0war.minesweeper.minesweeperfield;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -92,6 +90,12 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
     public void cleanField(){
         for (int cellId = 0; cellId < fieldSize*fieldSize; cellId++){
             MinesweeperCell currentCell = gameField.getCell(cellId);
+            clickCell(currentCell);
+        }
+    }
+
+    private void clickCell(MinesweeperCell currentCell) {
+        if (currentCell.getClickState() != ClickState.CLICK) {
             minesweeperFieldView.clickButton(currentCell, gameState);
             currentCell.setClickState(ClickState.CLICK);
         }
@@ -115,8 +119,10 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
 
         if (cell.getCurrentState() == BombState.BOMB &&
                 cell.getClickState() != ClickState.FLAG){
+            clickCell(cell);
             changeGameState(GameState.LOSE);
             cleanField();
+
         }
 
         if (nonClickCellsLeft == 0){

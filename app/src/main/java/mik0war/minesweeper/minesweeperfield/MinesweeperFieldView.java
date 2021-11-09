@@ -78,16 +78,17 @@ public class MinesweeperFieldView {
     }
 
     private int setBombTexture(MinesweeperCell cell, GameState gameState) {
-        if (gameState == GameState.ONGOING)
-            return BombTextureState.BOMB_EXPLODED.getTexture();
-        if (gameState == GameState.WIN)
-            return BombTextureState.BOMB_WIN.getTexture();
-        else
-        if (cell.getClickState() == ClickState.FLAG)
-            return BombTextureState.BOMB_FLAGGED.getTexture();
-        else
-            return BombTextureState.BOMB.getTexture();
-
+        switch (gameState){
+            case ONGOING:
+                return BombTextureState.BOMB_EXPLODED.getTexture();
+            case WIN:
+                return BombTextureState.BOMB_WIN.getTexture();
+            case LOSE:
+                if (cell.getClickState() == ClickState.FLAG)
+                    return BombTextureState.BOMB_FLAGGED.getTexture();
+            default:
+                return BombTextureState.BOMB.getTexture();
+        }
     }
 
     public void setFlag(MinesweeperCell currentMinesweeperCell){
