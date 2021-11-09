@@ -61,10 +61,13 @@ public class MinesweeperCell {
     }
 
     public void changeFlag(){
-        if (this.clickState == ClickState.FLAG)
-            this.clickState = ClickState.COMMON;
-
-        if (this.clickState == ClickState.COMMON)
-            this.clickState = ClickState.FLAG;
+        switch (this.clickState){
+            case FLAG:
+                this.clickState = ClickState.COMMON;
+                break;
+            case COMMON:
+                this.clickState = ClickState.FLAG;
+                break;
+        }
     }
 }

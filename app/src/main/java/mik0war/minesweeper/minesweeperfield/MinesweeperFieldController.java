@@ -1,8 +1,10 @@
 package mik0war.minesweeper.minesweeperfield;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
     public MinesweeperFieldController(Context context, int fieldSize, int bombCount) {
         MinesweeperFieldController.context = context;
 
-        this.gameField = new MinesweeperFieldData(fieldSize, bombCount, 0);
+        this.gameField = new MinesweeperFieldData(fieldSize, bombCount, 0, new ArrayList<>());
         this.isFirstMove = true;
 
         this.fieldSize = fieldSize;
@@ -53,6 +55,7 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
     @Override
     public boolean onLongClick(View v) {
         MinesweeperCell currentMinesweeperCell = gameField.getCell(v.getId());
+
         currentMinesweeperCell.changeFlag();
         minesweeperFieldView.setFlag(currentMinesweeperCell);
         return true;
@@ -73,7 +76,8 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
                     break;
                 }
                 else
-                    this.gameField = new MinesweeperFieldData(fieldSize, bombCount, v.getId());
+                    this.gameField = new MinesweeperFieldData(
+                            fieldSize, bombCount, v.getId(), gameField.getFlagsIndexes());
             }
         }
 
@@ -88,8 +92,8 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
     public void cleanField(){
         for (int cellId = 0; cellId < fieldSize*fieldSize; cellId++){
             MinesweeperCell currentCell = gameField.getCell(cellId);
-            currentCell.setClickState(ClickState.CLICK);
             minesweeperFieldView.clickButton(currentCell, gameState);
+            currentCell.setClickState(ClickState.CLICK);
         }
     }
 

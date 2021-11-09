@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import mik0war.minesweeper.minesweeperfield.states.BombState;
+import mik0war.minesweeper.minesweeperfield.states.ClickState;
 
 public class MinesweeperFieldData {
     private final ArrayList<MinesweeperCell> minesweeperCells;
     private final int fieldSize;
     private final int bombCount;
 
-    public MinesweeperFieldData(int fieldSize, int bombCount, int startPosition) {
+    public MinesweeperFieldData(int fieldSize, int bombCount,
+                                int startPosition, ArrayList<Integer> flags) {
         this.fieldSize = fieldSize;
         this.bombCount = bombCount;
 
@@ -20,7 +22,8 @@ public class MinesweeperFieldData {
         for(int position  = 0; position < fieldSize*fieldSize; position++)
             minesweeperCells.add(new MinesweeperCell(position));
 
-        setUpGame(startPosition);
+
+        setUpGame(startPosition, flags);
     }
 
     public MinesweeperFieldData(int fieldSize, int bombCount) {
@@ -34,12 +37,25 @@ public class MinesweeperFieldData {
 
     }
 
+
+    public ArrayList<Integer> getFlagsIndexes(){
+        ArrayList<Integer> flagIndexes = new ArrayList<>();
+        for (MinesweeperCell cell : minesweeperCells)
+            if (cell.getClickState() == ClickState.FLAG)
+                flagIndexes.add(cell.getPosition());
+
+        return flagIndexes;
+    }
+
     public MinesweeperCell getCell (int index){
         return minesweeperCells.get(index);
     }
 
-    private void setUpGame(int startPosition){
+    private void setUpGame(int startPosition, ArrayList<Integer> flags){
         bombGenerator(startPosition);
+
+        for (int flagIndex : flags)
+            minesweeperCells.get(flagIndex).setClickState(ClickState.FLAG);
 
         for (int position = 0; position < minesweeperCells.size(); position++){
             minesweeperCells.get(position).setNearbyBombsCount(getNearbyCellsList(position));
