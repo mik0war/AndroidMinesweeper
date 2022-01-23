@@ -1,5 +1,6 @@
 package mik0war.minesweeper.minesweeperfield;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,6 +12,7 @@ import mik0war.minesweeper.minesweeperfield.states.GameState;
 import mik0war.minesweeper.minesweeperfield.states.BombState;
 
 public class MinesweeperFieldController implements View.OnClickListener, View.OnLongClickListener {
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     private MinesweeperFieldView minesweeperFieldView;
 

@@ -38,4 +38,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    
+    public void changeGameState(GameState gameState){
+        this.gameState = gameState;
+    }
 }

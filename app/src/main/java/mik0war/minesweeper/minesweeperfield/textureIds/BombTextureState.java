@@ -1,4 +1,4 @@
-package mik0war.minesweeper.minesweeperfield.states;
+package mik0war.minesweeper.minesweeperfield.textureIds;
 
 import mik0war.minesweeper.R;
 

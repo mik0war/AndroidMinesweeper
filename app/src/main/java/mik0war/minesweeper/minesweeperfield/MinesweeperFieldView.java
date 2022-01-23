@@ -3,7 +3,6 @@ package mik0war.minesweeper.minesweeperfield;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,12 +11,13 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import mik0war.minesweeper.minesweeperfield.states.BombState;
-import mik0war.minesweeper.minesweeperfield.states.BombTextureState;
+import mik0war.minesweeper.minesweeperfield.textureIds.BombTextureState;
 import mik0war.minesweeper.minesweeperfield.states.ClickState;
-import mik0war.minesweeper.minesweeperfield.states.CommonTextureState;
+import mik0war.minesweeper.minesweeperfield.textureIds.CommonTextureState;
 import mik0war.minesweeper.minesweeperfield.states.GameState;
 
 public class MinesweeperFieldView {
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     ArrayList<ImageButton> buttons;
 
