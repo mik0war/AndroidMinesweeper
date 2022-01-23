@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MinesweeperFieldFragment extends Fragment {
@@ -52,7 +53,7 @@ public class MinesweeperFieldFragment extends Fragment {
             row.setOrientation(LinearLayout.HORIZONTAL);
 
             for (int columnNumber = 0; columnNumber < fieldSize; columnNumber++){
-                ImageButton button = MinesweeperFieldView.generateButton(
+                ImageView button = MinesweeperFieldView.generateButton(
                         columnNumber + rowNumber * fieldSize, gameController);
                 viewController.addButton(button);
                 row.addView(button);

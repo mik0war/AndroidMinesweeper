@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
     }
 
     private void performClickButton(int pos){
-        ImageButton btn = minesweeperFieldView.getButton(pos);
+        ImageView btn = minesweeperFieldView.getButton(pos);
         btn.performClick();
     }
 

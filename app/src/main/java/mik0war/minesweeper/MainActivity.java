@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -16,30 +17,23 @@ import android.widget.LinearLayout;
 import mik0war.minesweeper.minesweeperfield.MinesweeperFieldFragment;
 import mik0war.minesweeper.minesweeperfield.states.GameState;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private GameState gameState;
-    private Button createButton;
+    private Button startGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createButton = (Button) findViewById(R.id.createField);
-
-        createButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-
-                fm.beginTransaction().add(R.id.fragmentContainerView, MinesweeperFieldFragment.class, null).commit();
-            }
-        });
+        startGame = findViewById(R.id.btn_startGame);
+        startGame.setOnClickListener(this);
 
     }
-    
-    public void changeGameState(GameState gameState){
-        this.gameState = gameState;
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, GameFieldActivity.class);
+        startActivity(intent);
     }
 }

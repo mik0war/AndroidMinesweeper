@@ -19,25 +19,26 @@ import mik0war.minesweeper.minesweeperfield.states.GameState;
 public class MinesweeperFieldView {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    ArrayList<ImageButton> buttons;
+    ArrayList<ImageView> buttons;
 
     public MinesweeperFieldView(Context context) {
         MinesweeperFieldView.context = context;
         this.buttons = new ArrayList<>();
     }
 
-    public void addButton(ImageButton button){
+    public void addButton(ImageView button){
         buttons.add(button);
     }
 
-    public static ImageButton generateButton(int btnId, MinesweeperFieldController gameController){
-        ImageButton button = new ImageButton(context);
+    public static ImageView generateButton(int btnId, MinesweeperFieldController gameController){
+        ImageView button = new ImageView(context);
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         button.setId(btnId);
+        button.setClickable(true);
 
-        button.setImageDrawable(getDrawable(CommonTextureState.COMMON_CELL.getTexture()));
+        button.setBackgroundResource(CommonTextureState.COMMON_CELL.getTexture());
         button.setScaleType(ImageView.ScaleType.CENTER_CROP);
         button.setPadding(0,0,0,0);
 
@@ -47,15 +48,8 @@ public class MinesweeperFieldView {
         return button;
     }
 
-    public ImageButton getButton(int id) {
+    public ImageView getButton(int id) {
         return buttons.get(id);
-    }
-
-    public int setTexture(MinesweeperCell minesweeperCell, GameState gameState){
-        if (minesweeperCell.getCurrentState() == BombState.COMMON)
-            return setCommonTexture(minesweeperCell, gameState);
-        else
-            return setBombTexture(minesweeperCell, gameState);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -64,8 +58,14 @@ public class MinesweeperFieldView {
     }
 
     public void setDrawable(MinesweeperCell cell, GameState gameState){
-        ImageButton btn = buttons.get(cell.getPosition());
+        ImageView btn = buttons.get(cell.getPosition());
         btn.setImageDrawable(getDrawable(setTexture(cell, gameState)));
+    }
+    public int setTexture(MinesweeperCell minesweeperCell, GameState gameState){
+        if (minesweeperCell.getCurrentState() == BombState.COMMON)
+            return setCommonTexture(minesweeperCell, gameState);
+        else
+            return setBombTexture(minesweeperCell, gameState);
     }
 
     private int setCommonTexture(MinesweeperCell minesweeperCell, GameState gameState){
@@ -93,7 +93,7 @@ public class MinesweeperFieldView {
 
     public void setFlag(MinesweeperCell currentMinesweeperCell){
         if (currentMinesweeperCell.getClickState() != ClickState.CLICK){
-            ImageButton btn = buttons.get(currentMinesweeperCell.getPosition());
+            ImageView btn = buttons.get(currentMinesweeperCell.getPosition());
             int flagTexture = changeFlag(currentMinesweeperCell);
 
             btn.setImageDrawable(getDrawable(flagTexture));
@@ -110,7 +110,7 @@ public class MinesweeperFieldView {
     }
     
     public void clickButton(MinesweeperCell currentCell, GameState gameState) {
-        ImageButton currentButton = buttons.get(currentCell.getPosition());
+        ImageView currentButton = buttons.get(currentCell.getPosition());
         currentButton.setImageDrawable(getDrawable(setTexture(currentCell, gameState)));
     }
 }
