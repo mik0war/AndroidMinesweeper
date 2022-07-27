@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/StudioProjects/AndroidMinesweeper/app/src/main/res/drawable/menu_button_background.xml" value="0.2265" />
+        <entry key="..\:/Users/user/StudioProjects/AndroidMinesweeper/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/user/StudioProjects/AndroidMinesweeper/app/src/main/res/layout/fragment_field.xml" value="0.25" />
+        <entry key="..\:/Users/user/StudioProjects/AndroidMinesweeper/app/src/main/res/layout/game_field_activity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/user/StudioProjects/AndroidMinesweeper/app/src/main/res/layout/menu_activity.xml" value="0.253125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1453125" />
         <entry key="app/src/main/res/layout/fragment_field.xml" value="0.1453125" />
         <entry key="app/src/main/res/layout/game_field_activity.xml" value="0.1453125" />

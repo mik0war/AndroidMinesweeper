@@ -97,6 +97,11 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
         }
     }
 
+    private void setGameResult(GameState gameState){
+        changeGameState(gameState);
+        cleanField();
+    }
+
     private void clickCell(MinesweeperCell currentCell) {
         if (currentCell.getClickState() != ClickState.CLICK) {
             minesweeperFieldView.clickButton(currentCell, gameState);
@@ -123,14 +128,12 @@ public class MinesweeperFieldController implements View.OnClickListener, View.On
         if (cell.getCurrentState() == BombState.BOMB &&
                 cell.getClickState() != ClickState.FLAG){
             clickCell(cell);
-            changeGameState(GameState.LOSE);
-            cleanField();
+            setGameResult(GameState.LOSE);
 
         }
 
         if (nonClickCellsLeft == 0){
-            changeGameState(GameState.WIN);
-            cleanField();
+            setGameResult(GameState.WIN);
         }
     }
 }

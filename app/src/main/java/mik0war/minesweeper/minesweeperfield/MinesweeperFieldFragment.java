@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,6 @@ public class MinesweeperFieldFragment extends Fragment {
     private Context context;
     private MinesweeperFieldController gameController;
     private MinesweeperFieldView viewController;
-
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        context = activity;
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,8 +36,8 @@ public class MinesweeperFieldFragment extends Fragment {
         LinearLayout field = new LinearLayout(super.getContext());
         field.setOrientation(LinearLayout.VERTICAL);
 
-        gameController = new MinesweeperFieldController(context, fieldSize, bombCount);
-        viewController = new MinesweeperFieldView(context);
+        gameController = new MinesweeperFieldController(getActivity(), fieldSize, bombCount);
+        viewController = new MinesweeperFieldView(getActivity());
 
         for (int rowNumber = 0; rowNumber < fieldSize; rowNumber++){
             LinearLayout row = new LinearLayout(super.getContext());

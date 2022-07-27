@@ -27,7 +27,9 @@ public class GameFieldActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
 
-                fm.beginTransaction().add(R.id.fragmentContainerView, MinesweeperFieldFragment.class, null).commit();
+                fm.beginTransaction().add(R.id.fragmentContainerView,
+                        MinesweeperFieldFragment.class, null)
+                        .commit();
             }
         });
 
